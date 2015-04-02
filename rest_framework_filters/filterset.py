@@ -10,7 +10,12 @@ except ImportError:  # pragma: nocover
     from django.db.models.sql.constants import LOOKUP_SEP  # noqa
 from django.db import models
 from django.utils.datastructures import SortedDict
-from django.db.models.related import RelatedObject
+try:
+    from django.db.models.related import RelatedObject
+except ImportError:
+    # Django > 1.8
+    from django.db.models.fields.related.ForeignObject as RelatedObject
+
 from django.utils import six
 
 import django_filters
